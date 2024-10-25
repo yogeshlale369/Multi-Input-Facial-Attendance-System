@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/ecdafb2e-b502-4bc5-9457-aa8d9151d032)# Automated Attendance System using Facial Recognition
+# Automated Attendance System using Facial Recognition
 ![Picsart_24-10-26_01-32-36-033](https://github.com/user-attachments/assets/ae4ba56f-fb1d-4474-840d-aa7ec50748ce)
 
 This project implements an automated attendance system leveraging facial recognition technology. It offers flexibility by supporting multiple image sources: a webcam, a smartphone camera (via IP Webcam), and an ESP32-CAM module.  The system identifies students, records their attendance in a CSV file, and integrates with a dashboard for visualization and analysis.
