@@ -1,4 +1,5 @@
-# Automated Attendance System using Facial Recognition
+![image](https://github.com/user-attachments/assets/ecdafb2e-b502-4bc5-9457-aa8d9151d032)# Automated Attendance System using Facial Recognition
+![Picsart_24-10-26_01-32-36-033](https://github.com/user-attachments/assets/ae4ba56f-fb1d-4474-840d-aa7ec50748ce)
 
 This project implements an automated attendance system leveraging facial recognition technology. It offers flexibility by supporting multiple image sources: a webcam, a smartphone camera (via IP Webcam), and an ESP32-CAM module.  The system identifies students, records their attendance in a CSV file, and integrates with a dashboard for visualization and analysis.
 
@@ -188,3 +189,86 @@ pillow
 ```
 
 Now you’re ready to run the attendance monitoring system using any of the three camera options and visualize attendance records on the dashboard. For any questions or issues, feel free to reach out!
+
+# Converting to an Edge-Centric System
+
+To transform the attendance monitoring system into an edge-centric solution, we can connect it to cloud services using tools like **ngrok**. This allows for remote access to the system from anywhere, making the attendance data accessible through a secure tunnel.
+![WhatsApp Image 2024-10-21 at 01 14 15](https://github.com/user-attachments/assets/d2bb37b1-9083-40b0-ac3c-c25937fc8616)
+
+
+## Steps to Connect the System to the Cloud
+
+### 1. Install ngrok
+
+First, you need to install ngrok on your system. Ngrok creates secure tunnels to your localhost, allowing you to expose local servers to the internet.
+
+#### Installation Steps:
+
+1. **Download ngrok:**
+
+   Visit the [ngrok website](https://ngrok.com/download) to download the appropriate version for your operating system.
+
+2. **Unzip and Install:**
+
+   Unzip the downloaded file and move the `ngrok` executable to a directory included in your system's PATH. For example, on macOS/Linux:
+
+   ```bash
+   sudo mv ngrok /usr/local/bin
+   ```
+
+### 2. Start the Local Server
+
+Run the Python script for your attendance monitoring system. Ensure it's running and listening for incoming requests.
+
+For example, if you are using the webcam option:
+
+```bash
+python attendance_webcam.py
+```
+
+### 3. Expose the Local Server using ngrok
+
+Now that your local server is running, you can use ngrok to expose it to the internet. Open a new terminal window and execute the following command:
+
+```bash
+ngrok http 5000
+```
+
+> **Note:** Replace `5000` with the port number your server is using if it's different.
+
+### 4. Obtain the Public URL
+
+After running the ngrok command, it will display a forwarding URL, something like:
+
+```
+Forwarding                    http://abc123.ngrok.io -> http://localhost:5000
+```
+
+You can use this URL to access your local attendance monitoring system remotely.
+
+### 5. Update Your Application
+
+If your attendance system needs to interact with external services or databases in the cloud, ensure to update any relevant endpoints in your code to use the ngrok URL.
+
+For example, if you're sending attendance data to a cloud database, update the endpoint URL in your script:
+
+```python
+cloud_endpoint = 'http://abc123.ngrok.io/api/attendance'  # Replace with your ngrok URL
+```
+
+### 6. Secure Your Connection
+
+While ngrok provides a simple way to expose local servers, ensure that any sensitive data, like attendance information, is securely transmitted. Consider implementing HTTPS through ngrok or any other secure protocol for data exchange.
+
+### 7. Cloud Integration Options
+
+To further enhance the system, you can integrate it with cloud services:
+
+- **Database:** Use cloud databases (e.g., Firebase, AWS DynamoDB) to store attendance records remotely.
+- **Data Analysis:** Utilize cloud services for data analysis, enabling better insights into attendance patterns.
+- **Notifications:** Set up push notifications or alerts using cloud messaging services for attendance updates.
+
+---
+
+By following these steps, you can successfully convert your attendance monitoring system into an edge-centric solution that leverages cloud capabilities for accessibility and scalability.
+
